@@ -18,7 +18,7 @@ After we have created the **train** and **test** datasets, and we have made sure
 
 Following that, we want to keep only the columns that have to do with mean or standar deviation, so we use a regular expression pattern to get those. Then we need to make sure we keep the subject id, label and activity_label (label_named) as well.
 
-At this point we should pick more descriptive names for the activities but we did not have enough time for that.
+At this point we should pick more descriptive names for the activities. We kept the meaningful parts and left out the dots introduced by merging. More details about the names can be found in the CodeBook.md
 
 Finally, we use the chaining of dplyr, produce the average of each variable for each activity and each subject, and we write that to a file called tidy.txt.
 

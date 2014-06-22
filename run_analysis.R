@@ -74,6 +74,37 @@ total <- total[,keep_all]
 #Create a second, independent tidy data set with the average of each variable for each activity and each subject
 #Here we will use chaining to try and do this in one go with dplyr :)
 total_avg <- total%.%group_by(subject,label_named)%.%summarise_each(funs(mean))
+names(total_avg) <- c("subject", "activity", "tBodyAccMeanX",
+                      "tBodyAccMeanY", "tBodyAccMeanZ", "tBodyAccStdX",
+                      "tBodyAccStdY", "tBodyAccStdZ", "tGravityAccMeanX",
+                      "tGravityAccMeanY", "tGravityAccMeanZ", "tGravityAccStdX",
+                      "tGravityAccStdY", "tGravityAccStdZ", "tBodyAccJerkMeanX",
+                      "tBodyAccJerkMeanY", "tBodyAccJerkMeanZ", "tBodyAccJerkStdX",
+                      "tBodyAccJerkStdY", "tBodyAccJerkStdZ", "tBodyGyroMeanX",
+                      "tBodyGyroMeanY", "tBodyGyroMeanZ", "tBodyGyroStdX",
+                      "tBodyGyroStdY", "tBodyGyroStdZ", "tBodyGyroJerkMeanX",
+                      "tBodyGyroJerkMeanY", "tBodyGyroJerkMeanZ", "tBodyGyroJerkStdX",
+                      "tBodyGyroJerkStdY", "tBodyGyroJerkStdZ","tBodyAccMagMean",
+                      "tBodyAccMagStd", "tGravityAccMagMean", "tGravityAccMagStd",
+                      "tBodyAccJerkMagMean", "tBodyAccJerkMagStd", "tBodyGyroMagMean",
+                      "tBodyGyroMagStd", "tBodyGyroJerkMagMean", "tBodyGyroJerkMagStd",
+                      "fBodyAccMeanX", "fBodyAccMeanX", "fBodyAccMeanX",
+                      "fBodyAccStdX", "fBodyAccStdY", "fBodyAccStdZ",
+                      "fBodyAccMeanFreqX", "fBodyAccMeanFreqY", "fBodyAccMeanFreqZ",
+                      "fBodyAccJerkMeanX", "fBodyAccJerkMeanY", "fBodyAccJerkMeanZ",
+                      "fBodyAccJerkStdX", "fBodyAccJerkStdY", "fBodyAccJerkStdZ",
+                      "fBodyAccJerkMeanFreqX", "fBodyAccJerkMeanFreqY", "fBodyAccJerkMeanFreqZ",
+                      "fBodyGyroMeanX", "fBodyGyroMeanY", "fBodyGyroMeanZ",
+                      "fBodyGyroStdX", "fBodyGyroStdY", "fBodyGyroStdZ",
+                      "fBodyGyroMeanFreqX", "fBodyGyroMeanFreqY", "fBodyGyroMeanFreqZ",
+                      "fBodyAccMagMean", "fBodyAccMagStd", "fBodyAccMagMeanFreq",
+                      "fBodyBodyAccJerkMagMean", "fBodyBodyAccJerkMagStd", "fBodyBodyAccJerkMagMeanFreq",
+                      "fBodyBodyGyroMagMean", "fBodyBodyGyroMagStd", "fBodyBodyGyroMagMeanFreq",
+                      "fBodyBodyGyroJerkMagMean", "fBodyBodyGyroJerkMagStd", "fBodyBodyGyroJerkMagMeanFreq",
+                      "angletBodyAccMeanGravity", "angletBodyAccJerkMeanGravityMean", "angletBodyGyroMeanGravityMean",
+                      "angletBodyGyroJerkMeanGravityMean", "angleGravityMeanX", "angleGravityMeanY",
+                      "angleGravityMeanZ", "label") 
+
 write.table(total_avg,"tidy.txt",sep= ',', row.names= F) 
 
 
