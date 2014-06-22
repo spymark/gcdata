@@ -50,3 +50,21 @@ test <- cbind(df_test, subject_test, test_labels, label_named)
 
 #Bringing it all together
 total <- rbind(train,test)
+total <- tbl_df(total)
+
+#subset the columns that contain Mean or SD
+#We make a regex to find which columns have name containing Mean, mean or std
+keep <- grepl(names(total),pattern= ".*[Mm]ean.*|.*std.*")
+#We need to do the following trick because we want the logical indices of keep, and also the last 3 columns we have added
+base <- names(total)[keep]
+keep_all <- c(base,"subject","label","label_named")
+#And use that to subset. 
+total <- total[,keep_all]
+
+#descriptive names for activities already added
+#Appropriately labels the data set with descriptive variable names
+
+#Create a second, independent tidy data set with the average of each variable for each activity and each subject
+#Here we will use chaining to try and do this in one go with dplyr :)
+total_avg <- total%.%group_by(subject,label_named)%.%summarise_each(funs(mean))
+
