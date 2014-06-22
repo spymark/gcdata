@@ -67,4 +67,6 @@ total <- total[,keep_all]
 #Create a second, independent tidy data set with the average of each variable for each activity and each subject
 #Here we will use chaining to try and do this in one go with dplyr :)
 total_avg <- total%.%group_by(subject,label_named)%.%summarise_each(funs(mean))
+write.csv(total_avg,"tidy.txt",sep= ',') 
+
 
