@@ -21,6 +21,13 @@ train_labels <- read.csv("data/train/y_train.txt", header= F, col.names= "label"
 label_named <- factor(train_labels$label)
 levels(label_named) = activity_labels$labels
 
+# 1 -> WALKING
+# 2 -> WALKING_UPSTAIRS
+# 3 -> WALKING_DOWNSTAIRS
+# 4 -> SITTING
+# 5 -> STANDING
+# 6 -> LAYING 
+
 #Reading in the train set subjects
 subject_train <- read.csv("data/train/subject_train.txt", header= F, col.names= "subject")
 
