@@ -12,16 +12,21 @@ features <- read.csv("data/features.txt", header= F, sep= "", stringsAsFactors= 
 ###########
 
 #Reading in the train set
-df_train <- read.csv("data/train/X_train.txt", sep= "", header= F)
+df_train <- read.csv("data/train/X_train.txt", sep= "", header= F, col.names= features$feature)
 
 #Reading in the train labels
 train_labels <- read.csv("data/train/y_train.txt", header= F, col.names= "label")
 
 #Mapping the train labels to the actual activity labels. We first turn into a factor, and then set the levels to the activity labels
-train_labels_named <- factor(train_labels$label)
-levels(train_labels_named) = activity_labels$labels
+label_named <- factor(train_labels$label)
+levels(label_named) = activity_labels$labels
 
 #Reading in the train set subjects
+subject_train <- read.csv("data/train/subject_train.txt", header= F, col.names= "subject")
+
+#Bringing together the train dataset
+train <- cbind(df_train, subject_train, train_labels, label_named)
+
 
 ##########
 # TEST SET
@@ -42,3 +47,6 @@ subject_test <- read.csv("data/test/subject_test.txt", header= F, col.names= "su
 
 #Bringing together the test dataset
 test <- cbind(df_test, subject_test, test_labels, label_named)
+
+#Bringing it all together
+total <- rbind(train,test)
